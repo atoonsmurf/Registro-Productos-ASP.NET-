@@ -1,0 +1,93 @@
+﻿@model DSW1_EL1_SebastianSandoval.Models.Pregunta_2.Producto
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Registro de Productos</h2>
+
+<style>
+    .mensaje {
+        width: 100%;
+        background: #95FB95;
+        color: #505050;
+        text-align: center;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.idproducto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.idproducto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.idproducto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.umedida, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.umedida, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.umedida, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idcategoria, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idcategoria", ViewBag.categorias as SelectList, "Seleccione Categoria", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.idcategoria, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idproveedor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idproveedor", ViewBag.proveedores as SelectList, "Seleccione Proveedor", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.idproveedor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.preuni, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.preuni, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.preuni, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Limpiar", "Index", new { id = "" }, new { @class = "btn btn-primary" })
+                <input name="btncrud" type="submit" value="Agregar" class="btn btn-success" />
+                <input onclick="return confirm('¿Desea eliminar?')" name="btncrud" type="submit" value="Eliminar" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="mensaje">
+    @ViewBag.mensaje
+</div>
+
+<br />
+
+<div>
+    @Html.Partial("_VistaProducto", ViewBag.productos as IEnumerable<DSW1_EL1_SebastianSandoval.Models.Pregunta_2.Producto>)
+</div>
+    
